@@ -9,7 +9,7 @@ Generate an image of egghead.io course review that can be shared on social media
 
 ```js
 queryString.stringifyUrl({
-    url: 'https://share-learner-review.vercel.app/api/image,
+    url: 'https://share-learner-review.vercel.app/api/image',
     query: {
      review,
      rating,
