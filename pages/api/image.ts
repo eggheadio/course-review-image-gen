@@ -13,6 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     courseIllustration,
     courseTitle,
     rating,
+    author,
   }: any = req.query;
   const browser = await launchChromium();
 
@@ -20,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const page = await context.newPage();
   page.setViewportSize({
     width: 1200,
-    height: 1200,
+    height: 630,
   });
 
   // rating as stars
@@ -33,17 +34,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 ${map(
   times(rating),
   () =>
-    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star_2x.png" width="48" height="46" />`
+    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star_2x.png" width="38" height="36" />`
 ).join("")}
 ${
   showHalfStar
-    ? `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-half_2x.png" width="48" height="46" />`
+    ? `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-half_2x.png" width="38" height="36" />`
     : ""
 }
 ${map(
   times(emptyStarCount),
   () =>
-    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-empty_2x.png" width="48" height="46" />`
+    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-empty_2x.png" width="38" height="36" />`
 ).join("")}
 `;
 
@@ -64,13 +65,13 @@ ${map(
 <style>
 body{
     margin: 0; 
-    padding:0;
+    padding: 80px 80px 140px 80px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-items: center;
     width: 1200px;
-    height: 1200px;
+    height: 630px;
     background-color: rgba(17,24,39,1);
     font-family: 'Adelle Sans', sans-serif;
 }
@@ -78,49 +79,48 @@ body{
 .resize{
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 1000px;
+    text-align: left;
+    width: 100%;
     height: 100%;
-    max-height: 300px;
+    max-height: 340px;
     color: #ffffff;
     line-height: 1.3;
-    margin: 50px 0;
+    margin: 0 0 30px 0;
 }
-
 
 .created{
     position: absolute;
     left: 200px;
     top: 475px;
 }
-
 </style>
+<div class="flex-shrink-0">
+<img src="${courseIllustration}" width="300" height="300" class="" />
+</div>
+<main class="flex flex-col justify-center h-full w-full pl-16">
 
- <header class="absolute top-24">
-    <img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637569318/share-learner-review/egghead-logo_2x.png" width="274" height="73" />
-</header> 
-<main class="flex flex-col items-center justify-center h-full pt-40">
-  ${rating && `<div class="space-x-2 flex items-center">${stars}</div>`}
-  <div class="resize">${review}</div>
+  <div class="resize">
   ${
-    authorName &&
-    `<div class="flex items-center">
-    <img width="80px" height="80px" class="rounded-full" src="${authorAvatar}"/>
-    <div class="pl-4 text-white text-3xl">${authorName || "learner"}</div>
-    </div>`
+    courseTitle &&
+    `<div class="pb-8 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}</div>`
   }
+  ${review}</div>
 </main>
-<footer class="flex items-center justify-center top-0 left-0 w-full py-10 px-24 bg-black bg-opacity-30">
-   <img src="${courseIllustration}" width="160" height="160" />
-   ${
-     courseTitle &&
-     `<div class="pl-6 text-white text-4xl leading-tight">${courseTitle}</div>`
-   }
-</footer>
+<div class="flex items-center justify-center w-full space-x-16 absolute left-0 bottom-10">
+${
+  authorName && author
+    ? `<div class="flex items-center">
+  <img width="70px" height="70px" class="rounded-full" src="${authorAvatar}"/>
+  <div class="pl-4 text-white text-3xl pt-1">${authorName || "learner"}</div>
+  </div>`
+    : ``
+}
+${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
+<img class="" src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637569318/share-learner-review/egghead-logo_2x.png" width="250" height="65" />
+</div>
 <script src="https://unpkg.com/textfit@2.4.0/textFit.js"></script>
 <script>
-    textFit(document.querySelector('.resize'), { multiLine: true });
+    textFit(document.querySelector('.resize'), { multiLine: true, maxFontSize: 52 });
 </script>
 </body>
 </html>
@@ -133,7 +133,8 @@ body{
 
   res.setHeader("Content-Type", "image/png");
   res.setHeader("Content-Length", screenshotBuffer.length);
-  res.setHeader("Content-disposition", "attachment; filename=review@2x.png");
+  // download
+  // res.setHeader("Content-disposition", "attachment; filename=review@2x.png");
   res.statusCode = 200;
 
   res.send(screenshotBuffer);
