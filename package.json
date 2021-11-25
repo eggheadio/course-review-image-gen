@@ -1,5 +1,5 @@
 {
-  "name": "share-learner-review",
+  "name": "course-review-image-gen",
   "private": true,
   "scripts": {
     "dev": "next dev",
