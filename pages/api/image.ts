@@ -24,6 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     height: 630,
   });
 
+  const displayAuthor = author ? author === "true" : true;
+
   // rating as stars
   const remainder = parseFloat((rating % 1).toFixed(1));
   const roundedRemainder = Math.ceil(remainder);
@@ -108,10 +110,10 @@ body{
 </main>
 <div class="flex items-center justify-center w-full space-x-16 absolute left-0 bottom-10">
 ${
-  authorName && author
+  displayAuthor
     ? `<div class="flex items-center">
   <img width="70px" height="70px" class="rounded-full" src="${authorAvatar}"/>
-  <div class="pl-4 text-white text-3xl pt-1">${authorName || "learner"}</div>
+  <div class="pl-4 text-white text-3xl pt-1">${authorName || "Learner"}</div>
   </div>`
     : ``
 }

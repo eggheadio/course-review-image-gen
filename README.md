@@ -16,7 +16,8 @@ queryString.stringifyUrl({
      authorName,
      authorAvatar,
      courseIllustration,
-     courseTitle
+     courseTitle,
+     author, // boolean, default is true, pass false to hide author details
     }
 ```
 
