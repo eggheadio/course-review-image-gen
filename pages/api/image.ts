@@ -109,6 +109,7 @@ body{
   ${review}</div>
 </main>
 <div class="flex items-center justify-center w-full space-x-16 absolute left-0 bottom-10">
+${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
 ${
   displayAuthor
     ? `<div class="flex items-center">
@@ -117,7 +118,6 @@ ${
   </div>`
     : ``
 }
-${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
 <img class="" src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637569318/share-learner-review/egghead-logo_2x.png" width="250" height="65" />
 </div>
 <script src="https://unpkg.com/textfit@2.4.0/textFit.js"></script>
