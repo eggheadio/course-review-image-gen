@@ -91,13 +91,16 @@ body{
     color: #ffffff;
     line-height: 1.3;
     margin: 0 0 30px 0;
-    font-family: "Adelle Sans";
 }
 
 .created{
     position: absolute;
     left: 200px;
     top: 475px;
+}
+
+.emoji {
+  font-family: "Adelle Sans";
 }
 
 img.emoji {
