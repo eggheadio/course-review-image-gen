@@ -62,12 +62,11 @@ ${map(
     <title>Document</title>
 </head>
 <body>
-<style>
-    ${Font}
-</style>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 <style>
+${Font}
+
 body{
     margin: 0; 
     padding: 80px 60px 140px 60px;
@@ -99,10 +98,6 @@ body{
     top: 475px;
 }
 
-.emoji {
-  font-family: "Adelle Sans";
-}
-
 img.emoji {
   height: 1em;
   width: 1em;
@@ -121,7 +116,7 @@ img.emoji {
     courseTitle &&
     `<div class="pb-8 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}</div>`
   }
-  ${review}</div>
+  ${emojify(review)}</div>
 </main>
 <div class="flex items-center justify-center w-full space-x-16 absolute left-0 bottom-10">
 ${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
