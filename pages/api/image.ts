@@ -121,7 +121,7 @@ img.emoji {
     courseTitle &&
     `<div class="pb-8 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}</div>`
   }
-  ${emojify(review)}</div>
+  ${review}</div>
 </main>
 <div class="flex items-center justify-center w-full space-x-16 absolute left-0 bottom-10">
 ${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
