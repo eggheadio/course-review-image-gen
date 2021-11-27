@@ -78,7 +78,7 @@ body{
     width: 1200px;
     height: 630px;
     background-color: rgba(17,24,39,1);
-    font-family: 'Adelle Sans', sans-serif;
+    font-family: 'Adelle Sans';
 }
 
 .resize{
