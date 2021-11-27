@@ -78,7 +78,7 @@ body{
     width: 1200px;
     height: 630px;
     background-color: rgba(17,24,39,1);
-    font-family: 'Adelle Sans';
+    font-family: "Adelle Sans";
 }
 
 .resize{
@@ -91,6 +91,7 @@ body{
     color: #ffffff;
     line-height: 1.3;
     margin: 0 0 30px 0;
+    font-family: "Adelle Sans";
 }
 
 .created{
