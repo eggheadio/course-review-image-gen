@@ -126,7 +126,7 @@ img.emoji {
     review
   )}<span class="opacity-90 text-blue-100">”</span> ${
     authorName &&
-    `<span class="opacity-90 text-blue-100 authorName">— ${authorName}</span>`
+    `<span class="opacity-90 text-blue-100 authorName">– ${authorName}</span>`
   }
   </div>
 </main>
