@@ -86,6 +86,7 @@ body{
     display: flex;
     align-items: center;
     text-align: left;
+    font-weight: bold;
     width: 100%;
     height: 100%;
     color: #ffffff;
@@ -96,6 +97,7 @@ body{
 
 .authorName {
   font-size: 28px;
+  font-weight: normal;
 }
 
 .created{
@@ -117,29 +119,36 @@ img.emoji {
 </div>
 <main class="flex flex-col justify-center h-full w-full pl-16">
 <div class="flex items-center space-x-6 pb-8">
-${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
-${
-  displayAuthor && authorName
-    ? `<div class="flex items-center">
-  <div class="pt-1 opacity-90 text-blue-100 authorName">by ${authorName}</div>
-  </div>`
-    : ``
-}
+
 </div>
-  <div class="resize">“${emojify(review)}”</div>
+  <div class="resize">
+  <span class="opacity-90 text-blue-100">“</span>${emojify(
+    review
+  )}<span class="opacity-90 text-blue-100">”</span><br/> 
+  <div class="flex items-center space-x-5 pt-4">
+  ${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
+  ${
+    displayAuthor && authorName
+      ? `<div class="flex items-center pt-2">
+    <div class="opacity-90 text-blue-100 authorName">${authorName}</div>
+    </div>`
+      : ``
+  }
+  </div>
+  </div>
   ${
     courseTitle &&
-    `<div class="pt-2 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}${
+    `<!-- <div class="pt-2 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}${
       instructorName && `, course by ${instructorName}`
-    }</div>`
+    }</div> -->`
   }
 </main>
-<div class="flex items-center space-x-16 absolute left-8 bottom-8">
+<div class="flex items-center space-x-16 absolute right-8 top-8">
 <img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637569318/share-learner-review/egghead-logo_2x.png" width="250" height="65" />
 </div>
 <script src="https://unpkg.com/textfit@2.4.0/textFit.js"></script>
 <script>
-    textFit(document.querySelector('.resize'), { multiLine: true, maxFontSize: 52 });
+    textFit(document.querySelector('.resize'), { multiLine: true, maxFontSize: 60 });
 </script>
 </body>
 </html>
