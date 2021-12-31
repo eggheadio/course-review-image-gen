@@ -14,7 +14,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     courseIllustration,
     courseTitle,
     rating,
-    author,
     instructorName,
     instructorAvatar,
   }: any = req.query;
@@ -27,8 +26,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     height: 630,
   });
 
-  const displayAuthor = author ? author === "true" : true;
-
   // rating as stars
   const remainder = parseFloat((rating % 1).toFixed(1));
   const roundedRemainder = Math.ceil(remainder);
@@ -39,17 +36,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 ${map(
   times(rating),
   () =>
-    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star_2x.png" width="43" height="41" />`
+    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star_2x.png" width="45" height="43" />`
 ).join("")}
 ${
   showHalfStar
-    ? `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-half_2x.png" width="43" height="41" />`
+    ? `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-half_2x.png" width="45" height="43" />`
     : ""
 }
 ${map(
   times(emptyStarCount),
   () =>
-    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-empty_2x.png" width="43" height="41" />`
+    `<img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637567935/share-learner-review/star-empty_2x.png" width="45" height="43" />`
 ).join("")}
 `;
 
@@ -96,7 +93,7 @@ body{
 }
 
 .authorName {
-  font-size: 28px;
+  font-size: 80%;
   font-weight: normal;
 }
 
@@ -122,26 +119,16 @@ img.emoji {
 
 </div>
   <div class="resize">
+  ${
+    rating ? `<div class="space-x-3 flex items-center pb-8">${stars}</div>` : ``
+  }
   <span class="opacity-90 text-blue-100">“</span>${emojify(
     review
-  )}<span class="opacity-90 text-blue-100">”</span><br/> 
-  <div class="flex items-center space-x-5 pt-4">
-  ${rating ? `<div class="space-x-3 flex items-center">${stars}</div>` : ``}
-  ${
-    displayAuthor && authorName
-      ? `<div class="flex items-center pt-2">
-    <div class="opacity-90 text-blue-100 authorName">${authorName}</div>
-    </div>`
-      : ``
+  )}<span class="opacity-90 text-blue-100">”</span> ${
+    authorName &&
+    `<span class="opacity-90 text-blue-100 authorName">— ${authorName}</span>`
   }
   </div>
-  </div>
-  ${
-    courseTitle &&
-    `<!-- <div class="pt-2 text-3xl leading-tight opacity-90 text-blue-100">${courseTitle}${
-      instructorName && `, course by ${instructorName}`
-    }</div> -->`
-  }
 </main>
 <div class="flex items-center space-x-16 absolute right-8 top-8">
 <img src="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1637569318/share-learner-review/egghead-logo_2x.png" width="250" height="65" />
